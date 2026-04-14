@@ -1,0 +1,158 @@
+@import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,400,700);
+
+.title-slide .remark-slide-number {
+  display: none;
+}
+
+.inverse .remark-slide-number {
+  display: none;
+}
+
+.inverse {
+  background-color: #0b486b;
+  color: #d6d6d6;
+  text-shadow: 0 0 0px #333;
+}
+
+a {
+  text-decoration: underline;
+}
+
+.pink_font {
+  color: #f92f78;
+}
+
+h1.title {
+  margin-bottom: 1em !important;
+}
+
+.quarto-title-authors, .quarto-title-author, .reveal .authors, .reveal .author {
+  display: block !important;
+}
+
+.inverse h1, .inverse h2, .inverse h3 {
+  color: #ffffff;
+}
+
+.white_font {
+  color: #ffffff;
+}
+.yellow_background {
+  background-color: #FBBC13;
+  color: #1d0900;
+}
+
+.green_background {
+  background-color: #45b148;
+  color: #ffffff;
+}
+
+.cherry_background {
+  background-color: #db273e;
+  color: #ffffff;
+}
+
+.brown_background {
+  background-color: #941a1d;
+  color: #ffffff;
+}
+
+/* Set the font size for the title */
+.remark-slide-content h1 {
+  font-size: 42px; /* Adjust the font size as per your preference */
+}
+
+
+.skyblue_background {
+  background-color: #1398D5;
+  color: #FBBC13;
+}
+
+.remark-slide-content {
+    font-size: 25px;
+    padding: 1em 4em 1em 4em;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.remark-code, .remark-inline-code {
+    font-size: 22px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.small .remark-code { /*Change made here*/
+    font-size: 20px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.tiny .remark-code { /*Change made here*/
+    font-size: 18px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.compact { font-size: 85% }
+
+.small { font-size: 70% }
+
+.tiny { font-size: 50% }
+
+.verytiny { font-size: 30%}
+
+/* https://github.com/yihui/xaringan/issues/147 */
+
+.scroll-output {
+
+  height: 100%;
+  width: 110%;
+  overflow-x: scroll;
+  overflow-y: scroll;
+
+}
+
+.scroll-output-80 {
+
+  height: 80%;
+  width: 110%;
+  overflow-x: scroll;
+  overflow-y: scroll;
+
+}
+
+.pull-left-2 {
+  float: left;
+  width: 60%;
+}
+.pull-right-1 {
+  float: right;
+  width: 36%;
+}
+
+.pull-left-1 {
+  float: left;
+  width: 36%;
+}
+.pull-right-2 {
+  float: right;
+  width: 60%;
+}
+
+.pre {
+  overflow-y: scroll;
+  overflow-x: scroll;	
+}
+
+.title-slide h3:nth-of-type(1) {
+    font-size: 25px;
+}
+.title-slide h3:nth-of-type(2) {
+    color: gray;
+}
+  
+.center2 {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
