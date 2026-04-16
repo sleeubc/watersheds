@@ -1,0 +1,1100 @@
+---
+title: "Cities as Inverted Watersheds"
+author: 
+- Sanghoon Lee - UBC Sauder
+- Seung Hoon Lee - Yonsei Economics
+#date: "`r format(Sys.time(), '%d %B, %Y')`"
+params:
+  cell_size: FALSE
+output:
+  xaringan::moon_reader:
+    css: [default, slides.css]
+    lib_dir: libs
+    nature:
+      ratio: '16:9'
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+    seal: false
+    mathjax: "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_HTMLorMML"
+knit: (function(inputFile, encoding) { 
+      rmarkdown::render(inputFile,
+                    encoding=encoding, 
+                    output_file="unist_2025_nov.html") })
+---
+
+class: middle, center, .no_slide_number
+
+##.pink_font[Cities as Inverted Watersheds]
+
+
+<br>
+
+Sanghoon Lee - UBC Sauder
+
+Seung Hoon Lee - Yonsei Economics
+
+<br>
+
+UNIST 
+
+Nov 7, 2025
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, comment=NA)
+options(tibble.print_max = Inf)
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+library(htmltools)
+library(leaflet)
+library(sf)
+library(terra)
+library(tmap)
+tmap_mode("view")
+library(scales)
+library(gt)
+```
+
+### Administrative or statistical geographic units
+
+Metropolitan Statistical Areas (MSAs), municipalities, counties, ...
+
+--
+
+Not designed for economic analyses, so often not ideal.
+- Los Angeles–Long Beach–Anaheim MSA includes Mojave Desert.
+
+Not available for certain types of analyses
+- Subcenters within cities
+
+Different countries use different definitions of cities. 
+- Hard to answer questions related to cities (e.g. urbanization and fertility)?
+
+---
+
+### Delineating clusters from granular data
+
+- City boundaries - Rozenfeld et al. (2011), Duranton (2015) 
+
+- Subcenters - McMillen (2001), Redfearn (2007)
+
+- Ethnic enclaves - Dai and Schiff (2023)
+
+- JUE special issue (2021) - de Bellefon et al, Dingle et al, Ch et al, Arribas-Bel et al, Baragwanath et al, Bosker et al, Moreno-Monroy et al, Galdo et al, Henderson et al, Dijkstra et al.
+
+--
+
+Challenges still remain (Duranton, 2021).
+
+- Lack of theoretical foundation
+
+- Arbitrary threshold
+
+- Separate literatures on subcenter and city delineation
+
+
+---
+
+### This paper
+
+Proposes a new method to delineate clusters, that overcomes these challenges, by applying the .pink_font[watershed segmentation algorithm] used in image processing.
+
+- Considers a city as a mountain on a smoothed density surface of economic activities.
+
+- Applies a technique widely used in medical imaging (organ segmentation in CT scans) to segment cities from spatial data. 
+
+Using the newly proposed method, we delineate for the first time in the literature:
+
+- Subcentres for the entire continental US ([link](https://subcenters.sanghoon.ca/))
+
+- All cities from 1975 to 2020 in the world ([link](https://watersheds.sanghoon.ca/))
+
+Presents new facts from the newly constructed datasets. 
+
+
+---
+
+class: middle, center
+
+# .pink_font[Method overview]
+
+---
+
+### Flow-based approach
+
+Group contiguous areas that have high level of interactions measured by commuting flows.
+
+- CBSAs in the U.S. 
+
+- FUAs in OECD countries
+
+- Metropolitan Areas in Colombia (Duranton, 2015)
+
+#### Challenge
+
+- Flow data are relatively difficult to obtain (e.g., India, historical data).
+
+---
+
+### Density based approaches
+
+Prevaling approach, due to data availability. 
+
+Includes
+- grid-based approach
+- DBSCAN
+- city clustering algorithm
+
+Set a density threshold and find contiguous areas above the threshold.
+
+--
+
+Main challenge - arbitrary selection of the density threshold.
+
+---
+
+Simple example to illustrate the main challenge in density threshold selection.
+
+```{r echo=FALSE}
+include_graphics("figures/example.png")
+```
+
+---
+
+Not possible to separately identify all three clusters with a single threshold.
+
+```{r echo=FALSE}
+include_graphics("figures/example_hor.png")
+```
+
+---
+
+This can happen both within a city and across cities.
+
+Need to choose the threshold parameters locally.
+
+- Different thresholds across areas make it difficult to compare the identified clusters.
+- Arbitrariness in cluster size and characteristics.
+
+Different approaches for delineating subcenters and cities.  
+
+---
+
+### Cities as mountains on a smoothed density surface
+
+We consider cities as *mountains on a smoothed density surface* and the boundaries of cities as the boundaries of mountains. 
+
+We use the watershed segmentation algorithm to identify the boundaries of mountains (cities). 
+
+
+---
+
+Watershed - the area of land that flows to a common outlet (i.e., a .pink_font[pour point]) and forms a basin.
+
+```{r echo=FALSE, out.width="45%", fig.align='center'}
+#include_graphics("https://streamline.imgix.net/d0137d76-8f43-408c-9b43-aa3e54f62403/dd342d5f-7adf-4256-9935-7d4b22d7db23/Watershed%20diagram.jpg?ixlib=rb-1.1.0&w=2000&h=2000&fit=max&or=0&s=c559560279d62ca63db72008d5950fdc")
+include_graphics("figures/Watershed_diagram.jpeg")
+```
+.tiny[Source: https://www.rcrcd.org/what-is-a-watershed]
+
+Efficient algorithms and tools available to identify watersheds from GIS raster data.
+
+---
+
+Mountains become watershed basins when inverted!
+
+```{r echo=FALSE}
+include_graphics("figures/example_watershed.png")
+```
+
+---
+
+The algorithm uniquely classifies points into clusters, given a density surface. No parameters to adjust.
+
+--
+
+The only parameter throughout the whole process is the smoothing parameter to create the density surface.
+
+Setting different values allows us to see the clusters at different detail levels: whole cities with a larger value or subcenters with a smaller value.
+
+---
+
+class: middle
+
+```{r echo=FALSE}
+include_graphics("figures/example_diff_sigma.png")
+```
+
+---
+
+#### What does our method capture?
+
+
+--
+
+Imagine a variation of the Monocentric city model with three city centers A, B, and C. 
+
+The commuting flow direction coincides with the direction in which density increases.
+
+The commuting-flow-based approach produces the same delineation as ours.
+
+```{r echo=FALSE, out.width='80%'}
+include_graphics("figures/example.png")
+```
+
+---
+
+#### Summary
+
+- Use the same algorithm to identify clusters at different levels (e.g. entire cities or subcenters within cities) with a single parameter adjustment. 
+
+- Despite its simplicity, our algorithm outperforms or matches existing methods.
+
+- Theoretical justification and produces similar results as the flow-based approach, without requiring commuting-flow data.
+
+- No need to handpick parameters for each region, allowing large-scale applications.
+
+- Applicable to various data types (e.g., point, polygon, raster), as long as we can generate a density surface.
+
+---
+
+#### Road map
+
+Delineating Consumption Subcenters for continental US ([link](https://subcenters.sanghoon.ca/))
+
+- First time in the literature
+
+Delineating Whole Cities in the US
+
+- Compare methods using the official CBSA boundaries as the benchmark
+
+Delineation of all cities in the world from 1975 to 2020 ([link](https://watersheds.sanghoon.ca/))
+
+--
+
+**Using the new data, we can**
+- compare different level of cities (subcenters vs cities).
+
+- compare cities across countries. 
+
+- examine complete city sample, including all cities including very small ones 
+
+- analyze global city dynamics from 1975 to 2020.
+
+---
+
+### New facts from the new data
+
+
+Hierarchy in business location patterns 
+- Clothing Stores (NAICS 4481) and Restaurants (7225) tend to be located in large subcenters and large cities.
+- Death Care Services (8122) & Automobile Dealers (4411, 4412) tend to be located in small subceters and small cities. 
+- A missing channel in Central Place Theory - land requirement
+    
+Urban Wage Premium across subcenters vs cities
+- Negative wage premium for subcenters within cities
+- Negative wage premium for small cities (with pop<10,000)    
+
+City size distribution over time (global)
+
+- Global population growth was driven primarily by the expansion of existing cities, rather than the creation of new ones.
+
+
+---
+
+### New facts from the new data (continued)
+
+Test important theories with complete world city sample
+
+- Gibrat’s Law: City growth rates are independent of initial size — holds except for the lower tail of the distribution.
+
+- Zipf's Law: Predicts a Pareto distribution of city sizes — actual distribution is closer to lognormal. 
+
+Urbanization patterns from 1975 to 2020
+
+- Median person lived in a city with population 0.66M in 1975, which increased to 1.42M by 2020 (115% increase)
+
+- 90th quantile person lived in a city with population 4.3M in 1975, which increased to 11.7M by 2020 (172% incresae)
+
+
+
+---
+
+class: middle, center
+
+# .pink_font[Delineating Consumption Subcenters]
+
+---
+
+### Safegraph data
+
+U.S.
+- POIs (Points of Interest) for the whole continental US
+- Visited in 2019
+- 4.6 million places with lon and lat.
+
+Exclude the POIs with the NAICS codes starting with 11 (Agriculture, Forestry, Fishing and Hunting), 21 (Mining, Quarrying, and Oil and Gas Extraction), 22 (Utilities), 31-33 (Manufacturing), 55 (Management of Companies and Enterprises).
+
+---
+
+.scroll-output[
+.small[
+```{r echo=FALSE}
+# temp <- read_rds("../data/pois_visited_2019.rds") %>% filter(!str_extract(naics_code, "^\\d{2}") %in% c("11", "21", "22", "31", "32", "33", "55"))
+# atlanta_boundry <- st_read("../data/cont_us/cbsa_boundaries.shp") %>% filter(NAME %>% str_detect("Atlanta"))
+# temp %>% st_intersection(atlanta_boundry) %>% write_rds("pois_presentation.rds")
+pois_sfm <- read_rds("tables/pois_presentation.rds")
+
+set.seed(123)
+sgraph_sample <- pois_sfm %>% select(`POI Name`=location_name, `NAICS`=naics_code) %>% sample_n(100) %>%
+  st_transform(crs=4326) %>% 
+  mutate(Longitude=st_coordinates(.)[,1], Latitude=st_coordinates(.)[,2] ) %>% 
+  st_drop_geometry() 
+
+#xtable::xtable(sgraph_sample %>% head(15), 
+#               caption="SafeGraph Data Example",
+#               label="tab:safe") %>% 
+#  print(file="../doc/draft_v1/safe_graph_example.tex")
+
+sgraph_sample %>%   knitr::kable()
+```
+]]
+
+---
+
+```{r echo=F}
+include_graphics("figures/pois_atlanta.png")
+```
+
+---
+
+class: middle, center
+.pink_font[
+## Processing steps
+]
+
+---
+
+### Convert POI data to a raster data.
+
+Project the POI data to .pink_font[USA Contiguous Albers Equal Area Conic, USGS (EPSG = 5070)].
+- Preserve area size.
+- Use meters as distance unit.
+
+Create a raster data with a 100 meter by 100 meter resolution, covering the whole continental US.
+
+Count the number of POIs for each cell.
+
+---
+
+class: middle
+
+<div style="display: flex; justify-content: center; align-items: center;">
+  <figure style="text-align: center;">
+    <img src="tm_pois_atl.png" alt="Image 1" style="width: 100%;">
+    <figcaption> POIs (Atlanta downtown)</figcaption>
+  </figure>
+  
+  <figure style="text-align: center;">
+    <img src="tm_raster_atl.png" alt="Image 2" style="width: 100%;">
+    <figcaption> Raster</figcaption>
+  </figure>
+</div>
+
+---
+
+### Smoothing the Surface
+
+.pull-left[
+
+We apply the Gaussian filter to the raster data.
+
+.pink_font[Two dimensional moving average] with the Gaussian kernel as weights.
+
+$$g(x,y) = \frac{1}{2 \pi \sigma^2} \exp^{-(x^2+y^2)/(2\sigma^2)}$$
+
+x and y are the distances from the origin in the horizontal and the vertical axes.
+]
+
+.pull-right[
+```{r echo=FALSE, out.height="30%", fig.align='center'}
+#include_graphics("https://i0.wp.com/theailearner.com/wp-content/uploads/2019/05/normal4.png?w=721&ssl=1")
+#.tiny[Source: https://theailearner.com/2019/05/06/gaussian-blurring/]
+include_graphics("figures/gaussian_figure.png")
+```
+
+]
+
+With $\sigma=500m$: cells 500m, 1000m, and 1500m away get 61%, 14%, and 1% weights compared to the own cell. With $\sigma=1km$:  88%, 61%, and 32% weights.
+
+---
+
+class: middle
+
+<div style="display: flex; justify-content: center; align-items: center;">
+  <figure style="text-align: center;">
+    <img src="tm_raster_atl_large_nobox.png" alt="Image 1" style="width: 100%;">
+    <figcaption> Raster </figcaption>
+  </figure>
+  
+  <figure style="text-align: center;">
+    <img src="tm_raster_atl_gaussian.png" alt="Image 2" style="width: 100%;">
+    <figcaption> After Gaussian smoothing </figcaption>
+  </figure>
+</div>
+
+---
+
+### Invert the smoothed surface
+
+<div style="display: flex; justify-content: center; align-items: center;">
+  <figure style="text-align: center;">
+    <img src="tm_raster_atl_gaussian.png" alt="Image 1" style="width: 100%;">
+    <figcaption> Pre-inverted surface </figcaption>
+  </figure>
+  
+  <figure style="text-align: center;">
+    <img src="inv_atl.png" alt="Image 2" style="width: 100%;">
+    <figcaption> Inverted surface </figcaption>
+  </figure>
+</div>
+
+---
+
+### Create D8 flow pointer
+
+Shows flow direction for each cell.
+
+```{r echo=FALSE, out.width="100%", fig.align='center'}
+#include_graphics("https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-analyst/GUID-A541AFD3-922C-41DA-952C-0D4524F85B39-web.gif")
+
+include_graphics("figures/d8_flow_algorithm.png")
+```
+
+<!-- Pour Points = local minima of the inverted smoothed surface, but not local maxima. -->
+<!-- - The D8 flow pointer of the .pink_font[inverted] surface is 0. -->
+<!-- - The D8 flow pointer of the .pink_font[pre-inverted] surface is .pink_font[not] 0, to exclude flat areas. -->
+
+---
+
+### Identifying peaks
+
+Pour points of the inverted smoothed surface.
+
+Local minima of the inverted smoothed surface, but not local maxima.
+- The D8 flow pointer of the .pink_font[inverted] surface is 0.
+- The D8 flow pointer of the .pink_font[pre-inverted] surface is .pink_font[not] 0, to exclude flat areas.
+
+---
+
+class: middle
+
+<div style="display: flex; justify-content: center; align-items: center;">
+  
+  <figure style="text-align: center;">
+    <img src="inv_atl.png" alt="Image 2" style="width: 100%;">
+    <figcaption> Inverted surface </figcaption>
+  </figure>
+  
+    <figure style="text-align: center;">
+    <img src="inv_atl_peak.png" alt="Image 1" style="width: 100%;">
+    <figcaption> Pour points (peaks) </figcaption>
+  </figure>
+
+</div>
+
+---
+
+### Identify watersheds
+
+For each pour point, identify the watershed cells flowing to the pour point using the D8 flow pointer.
+
+---
+
+class: middle
+
+<div style="display: flex; justify-content: center; align-items: center;">
+
+    <figure style="text-align: center;">
+    <img src="inv_atl_peak.png" alt="Image 1" style="width: 100%;">
+    <figcaption> Pour points (peaks) </figcaption>
+  </figure>
+
+  <figure style="text-align: center;">
+    <img src="watersheds_atl.png" alt="Image 2" style="width: 100%;">
+    <figcaption> Watersheds </figcaption>
+  </figure>
+
+</div>
+
+---
+
+### Count the number of POIs for each watershed.
+
+<div style="display: flex; justify-content: center; align-items: center;">
+
+  <figure style="text-align: center;">
+    <img src="watersheds_atl.png" alt="Image 2" style="width: 100%;">
+    <figcaption> Watersheds </figcaption>
+  </figure>
+
+    <figure style="text-align: center;">
+    <img src="watersheds_pois_atl.png" alt="Image 1" style="width: 100%;">
+    <figcaption> Watersheds with N POIs </figcaption>
+  </figure>
+
+</div>
+
+---
+
+#### Final output with $\sigma$ = 500 meters
+
+<!-- #generated by "density_based_benchmark/density_based_benchmark_r100_s5.R" -->
+<div style="display: flex; justify-content: center; align-items: center;">
+
+  <figure style="text-align: center;">
+    <img src="atl_ours_5.png" alt="Image 2" style="width: 100%;">
+  </figure>
+
+    <figure style="text-align: center;">
+    <img src="ny_ours_5.png" alt="Image 1" style="width: 100%;">
+  </figure>
+
+</div>
+
+---
+
+#### Final output with $\sigma$ = 800 meters
+
+<!-- #generated by "density_based_benchmark/density_based_benchmark_r100_s5.R" -->
+<div style="display: flex; justify-content: center; align-items: center;">
+
+  <figure style="text-align: center;">
+    <img src="atl_ours_8.png" alt="Image 2" style="width: 100%;">
+  </figure>
+
+  <figure style="text-align: center;">
+    <img src="ny_ours_8.png" alt="Image 1" style="width: 100%;">
+  </figure>
+
+</div>
+
+---
+
+
+class: middle, center
+
+# .pink_font[Delineating Whole Cities in the US]
+
+---
+
+Different $\sigma$'s reveal clusters at different levels.
+
+With a large smoothing parameter, we can delineate US cities. ([link](https://subcenters.sanghoon.ca/))
+
+--
+
+Using the official CBSA boundaries as a benchmark, we can compare our algorithm against the density-based method.
+
+--
+
+We use grids with 1 km x 1 km cell resolution to reduce computation costs.
+
+---
+
+### Choosing $\sigma$
+
+- We select $\sigma$ to ensure our delineated boundaries closely match the CBSA boundaries.
+
+- To quantify the similarity, we employ the City Jaccard (similarity) index $J_C$ (Bellefon et al, 2021).
+
+$$J_C \equiv \frac{\sum_{k \in K} | U_k^{cbsa} \cap U_k^{ws}|}{|  U^{cbsa} \cup U^{ws} |}$$
+    where $U_k^{cbsa}$ refers to CBSA $k$ and $U_k^{ws}$ denotes the cluster corresponding to CBSA $k$.
+
+- We can measure the size of a set $|\cdot|$ using population or area size.
+
+---
+
+### Optimal $\sigma = 12km$
+
+```{r, echo=FALSE, out.width='80%', fig.align='center'}
+include_graphics("figures/jaccard.png")
+```
+
+
+---
+
+### Our Delineated Cities
+
+[SD = 12 (12 cells x 1) kilometers](maps/cont_us_c1000_s12_ge100_pois_dcolor.html)
+
+With $\sigma = 12km$, the Jaccard indices are 0.850 with population and 0.482 with area.
+
+We identify a total of 2,189 cities.
+
+The smallest one contains only 2 points of interest (POIs), the median contains 265 POIs, and the largest city encompasses 275,677 POIs.
+
+---
+
+Watershed cities vs. POI density
+
+.center2[
+```{r, echo=FALSE}
+include_graphics("figures/usa_density_watershed_map.png")
+```
+]
+
+---
+
+CBSAs vs. POI density
+
+.center2[
+```{r, echo=FALSE}
+include_graphics("figures/usa_density_map.png")
+```
+]
+
+---
+
+### Optimal $\sigma$ and the density threshold
+
+We tune parameters of the density-based approach to best match the CBSA boundaries.  
+
+- Jaccard index with Areas: $\sigma$ = 6. threshold=0.4. Jaccard index = 0.137
+
+ Ours: $\sigma$ = 12. Jaccard index = 0.482.
+
+- Jaccard index with Population: $\sigma$ = 3. threshold=1.3. Jaccard index = 0.683
+
+ Ours: $\sigma$ = 12. Jaccard index = 0.850.
+
+--
+
+#### Compared to the density based method
+
+Our method produces a superior result with only one parameter.
+
+The optimal parameter value is same both with area and population.
+
+---
+
+Optimal density-based clusters with areas ($\sigma=6$ and threshold=0.4 )
+
+.center2[
+```{r, echo=FALSE}
+include_graphics("figures/us_map_den_sig_60_cut_0.004.png")
+```
+]
+
+
+---
+
+Optimal density-based clusters with population ($\sigma =3$ and threshold=1.3 )
+
+.center2[
+```{r, echo=FALSE}
+include_graphics("figures/us_map_den_sig_27_cut_0.012.png")
+```
+]
+
+
+---
+
+A single threshold tends to over-represent large clusters and under-represent small ones.
+
+```{r echo=FALSE}
+include_graphics("figures/example_hor2.png")
+```
+
+
+
+
+---
+
+.center2[
+```{r, echo=FALSE}
+#generated by "tasks/calc_jaccard_index/jaccard_index_density_based4_dev_analysis.R"
+include_graphics("figures/scatter_ws_density.png")
+```
+]
+
+---
+
+.center2[
+```{r, echo=FALSE}
+#generated by "tasks/calc_jaccard_index/jaccard_index_density_based4_dev_analysis.R"
+include_graphics("figures/scatter_ws_density_zoom.png")
+```
+]
+
+---
+
+### New Fact - Hierarchy in business location patterns
+
+What business types tend to concentrate in larger subcenters (vs larger cities)?  
+
+According to Central Place Theory, higher-order services (e.g. general hospital, museum) require larger markets due to thin demand or high fixed cost and thus tend to be concentrated in larger cities. 
+
+Verifying this pattern at the subcenter level or in small cities has been difficult, due to the lack of consistent boundary data.
+
+A potential missing channel in Central Place Theory: higher-order services may also require larger land areas.
+
+We compute the average cluster sizes for 4-digit NAICS codes at both the subcenter and city levels.
+
+
+---
+
+#####  POI Types (NAICS) by Avg. Cluster Size (among 4D-NAICS codes with more than 20,000 POIs)
+
+```{r echo=FALSE}
+naics_hierarchy <- read_rds("tables/avg_npois_combined.rds") %>% filter(unit=="Consumption Cluster")
+top15 <- naics_hierarchy %>% arrange(desc(avg_n_pois)) %>% 
+  head(15) %>% 
+  mutate(avg_n_pois=round(avg_n_pois, digits=0)) %>% 
+  select(`Top 15`=desc, `NAICS`=naics_code, `Cluster Size (Avg. N of POIs)`=avg_n_pois) %>% 
+  knitr::kable()
+
+bottom15 <- naics_hierarchy %>% arrange(avg_n_pois) %>% 
+  head(15) %>%   arrange(desc(avg_n_pois)) %>%
+  mutate(avg_n_pois=round(avg_n_pois, digits=0)) %>% 
+  select(`Bottom 15`=desc,  `NAICS`=naics_code, `Cluster Size (Avg. N of POIs)`=avg_n_pois) %>%   
+  knitr::kable()
+```
+
+.pull-left[
+.tiny[
+```{r echo=FALSE}
+top15
+```
+]
+]
+
+.pull-right[
+.tiny[
+```{r echo=FALSE}
+bottom15
+```
+]]
+
+
+---
+
+#####  POI Types (NAICS) by Avg. Cluster Size at City Level (among 4D-NAICS codes with more than 20,000 POIs)
+
+```{r echo=FALSE}
+
+naics_hierarchy <- read_rds("tables/avg_npois_combined.rds") %>% filter(unit=="City")
+
+```
+
+.pull-left[
+.tiny[
+```{r echo=FALSE}
+naics_hierarchy %>% arrange(desc(avg_n_pois)) %>% 
+  head(15) %>% 
+  mutate(avg_n_pois=round(avg_n_pois, digits=0)) %>% 
+  select(`Top 15`=desc, `NAICS`=naics_code, `Cluster Size (Avg. N of POIs)`=avg_n_pois) %>% 
+  knitr::kable()
+```
+]
+]
+
+.pull-right[
+.tiny[
+```{r echo=FALSE}
+naics_hierarchy %>% arrange(avg_n_pois) %>% 
+  head(15) %>% arrange(desc(avg_n_pois)) %>%
+  mutate(avg_n_pois=round(avg_n_pois, digits=0)) %>% 
+  select(`Bottom 15`=desc,  `NAICS`=naics_code, `Cluster Size (Avg. N of POIs)`=avg_n_pois) %>%   
+  knitr::kable()
+```
+]]
+
+
+---
+
+```{r echo=FALSE, out.width='60%', fig.align='center'}
+include_graphics("figures/avg_npois_combined.png")
+```
+
+---
+
+### New Fact - Urban Wage Premium for subcenters and cities
+
+Urban Wage Premium: Average wages tend to rise with city size.
+	
+- This relationship is well-documented and holds across many countries.
+
+Natural questions to answer with the new data:
+
+- Does the Urban Wage Premium hold among subcenters within the same city?
+	
+- Does it persist in smaller cities?
+
+By applying areal interpolation to Census data, we estimate average income and population for each watershed cluster.
+
+-	Areal interpolation is a spatial estimation method used to transfer data from one set of geographic boundaries (e.g., census tracts) to another (e.g., custom-defined clusters).
+
+- This allows us to estimate demographic and economic characteristics for non-standard spatial units such as our watershed clusters.
+
+---
+
+#### Urban Wage Premium for subcenters
+
+- Subcenter-level regression
+
+$$log(Income_{i,j}) = \beta_1 \times log(Population_i) + \delta_j + \epsilon_{i,j}$$
+where $Income_i$ refers to the average income of subcenter $i$ in city $j$
+
+
+- City-level regression
+
+$$log(Income_{j}) = \beta_1 \times log(Population_j) + \epsilon_j$$
+**Note:** Regressions are weighted by population sizes. 
+
+---
+
+#### Regression outcomes
+
+```{r echo=FALSE}
+# 데이터 준비
+tab <- tribble(
+  ~term,                ~`Sub-center`, ~City,
+  "log(pop)",           "-0.0649 ***", "0.0791 ***",
+  "",                   "(0.0067)",    "(0.0019)",
+  "(Intercept)",        "",            "9.2651 ***",
+  "",                   "",            "(0.0269)",
+  "N",                  "104,749",     "2,190",
+  "R²",                 "0.2729",      "0.4433",
+  "N of group: city",   "2,083",       ""
+)
+
+# gt로 표 생성
+tab %>%
+  gt(rowname_col = "term") %>%
+  cols_label(
+    `Sub-center` = "Sub-center",
+    City = "City"
+  ) %>%
+  cols_align(
+    align = "center",
+    columns = everything()   # 모든 열 가운데 정렬
+  ) %>%
+  tab_source_note(
+    source_note = md("**p < 0.01; *p < 0.05; · p < 0.1**")
+  ) %>%
+  tab_options(
+    table.font.size = px(16),   # 폰트 크기 키우기
+    table.width = pct(100),     # 표 너비 페이지 꽉 차게
+    heading.title.font.size = px(18),
+    data_row.padding = px(8)    # 셀 간격 넓히기
+  )
+```
+
+
+---
+
+#### Urban Wage Premium for small cities (Benchmark)
+
+```{r echo=FALSE, fig.align='center', out.width='40%'}
+include_graphics("figures/urban_premium_official_ws.png")
+```
+
+**Official CBSA data:** 0.0789 (s.e. 0.0031)
+
+**Watersheds with pop > 10,000:** 0.0625 (s.e. 0.0043)
+
+---
+
+#### Urban Wage Premium for small cities (all cities)
+
+```{r echo=FALSE, fig.align='center', out.width='35%'}
+include_graphics("figures/urban_premium_offical_ws_all_sample.png")
+```
+
+Urban Wage Premium may not work for small cities. 
+
+**Watersheds with pop > 10,000:** 0.0625 (s.e. 0.0043)
+
+**Watersheds with pop < 10,000:** -0.0270 (s.e. 0.0007)
+
+
+---
+
+class: middle, center
+
+# .pink_font[Delineating all cities in the world]
+
+### .pink_font[1975 to 2020]
+
+---
+
+### GHS population data
+
+Using the Global Human Settlement (GHS) population data, we delineate cities in the world. 
+
+- High resolution (250m x 250m) population grids derived from satellite imagery and census data developed by the European Commission's Joint Research Centre.
+
+- Data spans from 1975 to 2020 in 5-year increments.
+
+
+---
+
+### Delineation of all cities in the world from 1975 to 2020.
+
+Using the official CBSA boundaries as a benchmark, we choose $\sigma= 9 km$ that our delineated boundaries closely match the CBSA boundaries, as measured by the City Jaccard index. 
+
+Then, we apply the tuned $\sigma$ globally and delineate cities in the world from 1975 to 2020.
+
+Using the outcomes ([Link](http://watersheds.sanghoon.ca/)), we can compare cities across countries and over time. 
+
+---
+
+### City Size Distribution Over Time
+
+```{r echo=FALSE}
+# 데이터 생성
+tab <- tibble::tribble(
+  ~Year, ~`N of Clusters`, ~Q1,     ~Median,  ~Q3,     ~Max,
+  1975,  35584,            1869,    13543,    70520,   27614044,
+  2000,  36628,            2291,    18159,    98046,   34193148,
+  2020,  36653,            2561,    20706,    119018,  40100568
+)
+
+# gt로 표 생성
+tab %>%
+  gt() %>%
+  fmt_number(
+    columns = -Year,
+    decimals = 0, 
+    use_seps = TRUE
+  ) %>%
+  cols_align(
+    align = "center",
+    columns = everything()
+  ) %>%
+  tab_options(
+    table.font.size = px(14),
+    table.width = pct(100)
+  )
+```
+
+Global population growth has been driven mainly by the expansion of existing cities, rather than by the creation of new cities.
+
+
+---
+
+### City Size Dynamics - Gibrat's Law for all cities in the World
+
+```{r, echo=FALSE, out.width='70%', fig.align='center'}
+include_graphics("figures/city_dynamics.png")
+```
+
+Eeckhout's findings (2004) support Gibrat’s law for U.S. cities from 1990 to 2020, except for the bottom of the distribution. Our results are broadly consistent. 
+
+---
+
+### Zipf's Law for all Cities in the World
+
+Zipf's Law states that a city's size is inversely proportional to its rank.
+
+$$S_r = \frac{S_1}{r}$$
+where $S_r$ is the size of city with rank $r$ and $S_1$ is the size of the largest city. 
+
+--
+
+Three ways to test Zipf's Law:
+
+1. Run Zipf regression and check if Zipf's coefficient $-\beta_1$ is close to 1. 
+$$log(Rank_i + 1) =\beta_0 + \beta_1 \times log(Population_i) + \epsilon_i$$
+2. Examine if city size distribution follows Pareto distribution with shape parameter 1. 
+
+3. Zipf's coefficient is stable across different minimum population cutoffs of the sample.
+
+---
+
+### Zipf regression outcome
+
+.center2[
+```{r, echo=FALSE}
+#gereated by watersheds_ghs/tasks/urbanization.R
+include_graphics("figures/zips_world.png")
+```
+]
+
+---
+
+### Distribution of city sizes in the world (1975 and 2020)
+
+```{r, echo=FALSE, out.width='100%', fig.align='center'}
+#gereated by watersheds_ghs/tasks/urbanization.R
+include_graphics("figures/world_city_dist.png")
+```
+
+City size distribution is close to log normal distribution, not Pareto distribution. 
+
+---
+
+### Zipf's Coefficient depending on population cutoff
+
+.center2[
+```{r, echo=FALSE}
+include_graphics("figures/zips_world_cut.png")
+```
+]
+
+---
+
+**City size relative to the largest city (with pop $>$ 50M in 2020)**
+
+```{r, echo=FALSE, out.width='90%', fig.align='center'}
+include_graphics("figures/zipf_7520.png")
+```
+
+<span style="color:red">Red</span> line shows relative sizes predicted by Zipf's Law. 
+
+---
+
+### Rising Urbanization - City Size of the Median Resident
+
+```{r, echo=FALSE, out.width='95%', fig.align='center'}
+#generated by "watersheds_ghs/tasks/urbanization.R"
+include_graphics("figures/medium_person_city.png")
+```
+
+Rank all people by their city’s population; the median person’s city size is the population of the city where that person lives.
+
+---
+
+### Median Resident's City Size (1975 vs 2020)
+
+```{r, echo=FALSE, out.width='80%', fig.align='center'}
+#generated by "watersheds_ghs/tasks/urbanization.R"
+include_graphics("figures/med_pop_75_20.png")
+```
+
+
+
+---
+
+class: middle, center
+
+# .pink_font[Conclusion]
+
+---
+
+This paper proposes a new method to delineate clusters by utilizing the watershed segmentation algorithm.
+
+- Our method has theoretical background and produces similar outcomes as the flow-based methods, but does not require flow data.
+- We do not have to adjust parameter by location, allowing large scale applications.
+- We have only one global parameter $\sigma$. We can use the same algorithm to identify the clusters of different levels, simply adjusting the parameter.
+- Our method can be applied to any type of spatial data as long as we can generate a density surface, such as pixel-based data (e.g. night-light satellite images) and polygon-based data (e.g., Census data)
+
+By applying our algorithm to POI data and satelite-based population data, we delineate:
+- consumption subcenters in the continental US. First time in the literature.
+- cities in the world from 1975 to 2020. 
+
+These new datasets allow us to provide new empirical facts about urban structure and dynamics.
