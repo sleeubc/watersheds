@@ -1726,9 +1726,7 @@ Minimum cutoff to separate San Francisco and San Jose is 13.8 POIs per $km^2$. O
 </div>
 </div>
 </div>
-</section>
-<section id="section-12" class="slide level2 center">
-<h2><!--
+<!--
 ---
 
 ## [[Other types of data]{.white_font}]{text-align="center"} {background-color="#FBBC13" .center}
@@ -1757,7 +1755,9 @@ We delineate cities with polygon data (Census 2019 CBG population).
 
 ::::
 
---></h2>
+---
+
+-->
 </section>
 <section id="new-facts-from-subcenter-and-city-boundaries-for-us" class="slide level2 center" data-background-color="#FBBC13">
 <h2><span data-text-align="center"><span class="white_font">New Facts from Subcenter and City Boundaries for US</span></span></h2>
@@ -2155,7 +2155,7 @@ We delineate cities with polygon data (Census 2019 CBG population).
 </div>
 </div></div>
 </section>
-<section id="section-13" class="slide level2 center">
+<section id="section-12" class="slide level2 center">
 <h2><!--
 ---
 
@@ -3103,7 +3103,7 @@ R<sup>2</sup>
 :::
 -->
 </section>
-<section id="section-14" class="slide level2 center">
+<section id="section-13" class="slide level2 center">
 <h2><!--
 ---
 
@@ -3134,12 +3134,14 @@ R<sup>2</sup>
 <h3 id="median-residents-city-size-1975-vs-2020">Median Resident’s City Size (1975 vs 2020)</h3>
 
 <img data-src="figures/med_pop_75_20.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"></section>
-<section id="conclusion" class="slide level2 center">
-<h2><span data-text-align="center"><span class="pink_font">Conclusion</span></span></h2>
+<section id="conclusion" class="slide level2 center" data-background-color="#FBBC13">
+<h2><span data-text-align="center"><span class="white_font">Conclusion</span></span></h2>
 </section>
 <section class="slide level2 center">
 
-<p>This paper proposes a new method to delineate clusters by utilizing the watershed segmentation algorithm.</p>
+<ul>
+<li>This paper proposes a new method to delineate clusters by utilizing the watershed segmentation algorithm.</li>
+</ul>
 <div class="fragment">
 <ul>
 <li>Our method has theoretical background and produces similar outcomes as the flow-based methods, but does not require flow data.</li>
@@ -3160,13 +3162,12 @@ R<sup>2</sup>
 <li>Our method can be applied to any type of spatial data as long as we can generate a density surface, such as pixel-based data (e.g.&nbsp;night-light satellite images) and polygon-based data (e.g., Census data)</li>
 </ul>
 </div>
-<p>By applying our algorithm to POI data and satelite-based population data, we delineate: :::{.fragment} - consumption subcenters in the continental US. First time in the literature. :::</p>
 <div class="fragment">
-<ul>
-<li>cities in the world from 1975 to 2020.</li>
-</ul>
+<p>By applying our algorithm to POI data and satelite-based population data, we delineate: - consumption subcenters in the continental US. First time in the literature. - cities in the world from 1975 to 2020.</p>
 </div>
+<div class="fragment">
 <p>These new datasets allow us to provide new empirical facts about urban structure and dynamics.</p>
+</div>
 
 </section>
     </div>

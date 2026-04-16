@@ -1024,9 +1024,10 @@ We delineate cities with polygon data (Census 2019 CBG population).
 
 ::::
 
+---
+
 -->
 
----
 
 ## [[New Facts from Subcenter and City Boundaries for US ]{.white_font}]{text-align="center"} {background-color="#FBBC13" .center}
 
@@ -1564,11 +1565,12 @@ include_graphics("figures/med_pop_75_20.png")
 
 ---
 
-## [[Conclusion]{.pink_font}]{text-align="center"} {.center}
+## [[Conclusion]{.white_font}]{text-align="center"} {background-color="#FBBC13" .center}
 
 ---
 
-This paper proposes a new method to delineate clusters by utilizing the watershed segmentation algorithm.
+
+- This paper proposes a new method to delineate clusters by utilizing the watershed segmentation algorithm.
 
 :::{.fragment}
 - Our method has theoretical background and produces similar outcomes as the flow-based methods, but does not require flow data.
@@ -1586,13 +1588,12 @@ This paper proposes a new method to delineate clusters by utilizing the watershe
 - Our method can be applied to any type of spatial data as long as we can generate a density surface, such as pixel-based data (e.g. night-light satellite images) and polygon-based data (e.g., Census data)
 :::
 
+:::{.fragment}
 By applying our algorithm to POI data and satelite-based population data, we delineate:
-:::{.fragment}
 - consumption subcenters in the continental US. First time in the literature.
-:::
-
-:::{.fragment}
 - cities in the world from 1975 to 2020. 
 :::
 
+:::{.fragment}
 These new datasets allow us to provide new empirical facts about urban structure and dynamics.
+:::
