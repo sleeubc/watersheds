@@ -37,7 +37,7 @@ here::i_am("Slides-2026_04_ualberta.qmd")
 ```
 
 
-**Geographic boundaries are important!**
+**Geographic boundaries are important for economic analysis!**
 
 :::{.fragment}
 - No boundaries, no data.
@@ -1582,10 +1582,6 @@ include_graphics("figures/med_pop_75_20.png")
 
 :::{.fragment}
 - We have only one global parameter $\sigma$. We can use the same algorithm to identify the clusters of different levels, simply adjusting the parameter.
-:::
-
-:::{.fragment}
-- Our method can be applied to any type of spatial data as long as we can generate a density surface, such as pixel-based data (e.g. night-light satellite images) and polygon-based data (e.g., Census data)
 :::
 
 :::{.fragment}
