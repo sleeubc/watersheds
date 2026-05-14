@@ -151,7 +151,7 @@ Propose a new method to delineate cities and subcentres
 **New** boundaries for
 
 :::{.fragment}
-- **Subcentres** for [the entire continental US](https://subcenters.sanghoon.ca/) and for [Toronto](toronto_c100_s5.html), [Montréal](montreal_c100_s5.html), [Vancouver](vancouver_c100_s5.html), [Ottawa-Gatineau](ottawa_gatineau_c100_s5.html), and [Calgary](calgary_c100_s5.html)
+- **Subcentres** for [the entire continental US](https://subcenters.sanghoon.ca/) and for <details style="display:inline-block;vertical-align:middle"><summary style="cursor:pointer;color:#2780e3">Major Canadian cities</summary>[Toronto](maps/toronto_c100_s5.html), [Montréal](maps/montreal_c100_s5.html), [Vancouver](maps/vancouver_c100_s5.html), [Ottawa-Gatineau](maps/ottawa_gatineau_c100_s5.html), [Calgary](maps/calgary_c100_s5.html), [Edmonton](maps/edmonton_c100_s5.html)</details>
 :::
 
 :::{.fragment}
@@ -720,7 +720,7 @@ For each pour point, identify the watershed cells flowing to the pour point usin
 
 [Continental US](https://subcenters.sanghoon.ca/)
 
-[Toronto](toronto_c100_s5.html), [Montréal](montreal_c100_s5.html), [Vancouver](vancouver_c100_s5.html), [Ottawa-Gatineau](ottawa_gatineau_c100_s5.html), [Calgary](calgary_c100_s5.html)
+<details><summary style="cursor:pointer;color:#2780e3">Major Canadian cities</summary>[Toronto](maps/toronto_c100_s5.html), [Montréal](maps/montreal_c100_s5.html), [Vancouver](maps/vancouver_c100_s5.html), [Ottawa-Gatineau](maps/ottawa_gatineau_c100_s5.html), [Calgary](maps/calgary_c100_s5.html), [Edmonton](maps/edmonton_c100_s5.html)</details>
 
 ---
 
