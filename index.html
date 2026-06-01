@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="Slides-2026_05_ubc_sauder_files/libs/clipboard/clipboard.min.js"></script>
-<script src="Slides-2026_05_ubc_sauder_files/libs/quarto-html/tabby.min.js"></script>
-<script src="Slides-2026_05_ubc_sauder_files/libs/quarto-html/popper.min.js"></script>
-<script src="Slides-2026_05_ubc_sauder_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="Slides-2026_05_ubc_sauder_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="Slides-2026_05_ubc_sauder_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="Slides-2026_05_ubc_sauder_files/libs/quarto-html/quarto-syntax-highlighting-bcbce66894bfa8e7e94e40e0186b9bb8.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<script src="Slides-2026_06_ubc_sauder_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Slides-2026_06_ubc_sauder_files/libs/quarto-html/tabby.min.js"></script>
+<script src="Slides-2026_06_ubc_sauder_files/libs/quarto-html/popper.min.js"></script>
+<script src="Slides-2026_06_ubc_sauder_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="Slides-2026_06_ubc_sauder_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Slides-2026_06_ubc_sauder_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="Slides-2026_06_ubc_sauder_files/libs/quarto-html/quarto-syntax-highlighting-bcbce66894bfa8e7e94e40e0186b9bb8.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.7.29">
 
   <meta name="author" content="Sanghoon Lee - UBC Sauder">
   <meta name="author" content="Seung Hoon Lee - Yonsei Economics">
-  <title>Cities as Inverted Watersheds</title>
+  <title>Cities as Inverted Watersheds: Delineating Cities in Scale-space</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="Slides-2026_05_ubc_sauder_files/libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="Slides-2026_05_ubc_sauder_files/libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="Slides-2026_06_ubc_sauder_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="Slides-2026_06_ubc_sauder_files/libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -30,14 +30,14 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="Slides-2026_05_ubc_sauder_files/libs/revealjs/dist/theme/quarto-f563837468303362081e247dddd440d0.css">
+  <link rel="stylesheet" href="Slides-2026_06_ubc_sauder_files/libs/revealjs/dist/theme/quarto-f563837468303362081e247dddd440d0.css">
   <link rel="stylesheet" href="slides.css">
-  <link href="Slides-2026_05_ubc_sauder_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="Slides-2026_05_ubc_sauder_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="Slides-2026_05_ubc_sauder_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="Slides-2026_05_ubc_sauder_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
-  <link href="Slides-2026_05_ubc_sauder_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
-  <link href="Slides-2026_05_ubc_sauder_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link href="Slides-2026_06_ubc_sauder_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="Slides-2026_06_ubc_sauder_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="Slides-2026_06_ubc_sauder_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="Slides-2026_06_ubc_sauder_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="Slides-2026_06_ubc_sauder_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="Slides-2026_06_ubc_sauder_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
     .reveal div.sourceCode {
       margin: 0;
@@ -125,15 +125,15 @@
       margin-right: 0; 
     }
   </style>
-  <script src="Slides-2026_05_ubc_sauder_files/libs/kePrint-0.0.1/kePrint.js"></script>
-  <link href="Slides-2026_05_ubc_sauder_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+  <script src="Slides-2026_06_ubc_sauder_files/libs/kePrint-0.0.1/kePrint.js"></script>
+  <link href="Slides-2026_06_ubc_sauder_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 </head>
 <body class="quarto-light">
   <div class="reveal">
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title"><span class="pink_font">Cities as Inverted Watersheds</span></h1>
+  <h1 class="title"><span class="blue_font">Cities as Inverted Watersheds: Delineating Cities in Scale-space</span></h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -159,7 +159,7 @@ Seung Hoon Lee - Yonsei Economics
 </div>
 <div class="fragment">
 <ul>
-<li>The way we draw boundaries can affect our understanding of the world (e.g., MAUP, Gerrymandering)</li>
+<li>The way we draw boundaries can influence our understanding of the world (e.g., MAUP, Gerrymandering)</li>
 </ul>
 </div>
 <p><br></p>
@@ -250,13 +250,13 @@ Seung Hoon Lee - Yonsei Economics
 </section>
 <section class="slide level2 center">
 
-<p><strong>New</strong> boundaries for</p>
+<p>New boundaries for</p>
 <div class="fragment">
 <ul>
-<li><strong>Subcentres</strong> for <a href="https://subcenters.sanghoon.ca/">the entire continental US</a> and for
+<li>Subcentres and Cities for <a href="https://subcenters.sanghoon.ca/">the entire continental US</a> and for
 <details style="display:inline-block;vertical-align:middle">
 <summary style="cursor:pointer;color:#2780e3">
-Major Canadian cities
+major Canadian cities
 </summary>
 <a href="maps/toronto_c100_s5.html">Toronto</a>, <a href="maps/montreal_c100_s5.html">Montréal</a>, <a href="maps/vancouver_c100_s5.html">Vancouver</a>, <a href="maps/ottawa_gatineau_c100_s5.html">Ottawa-Gatineau</a>, <a href="maps/calgary_c100_s5.html">Calgary</a>, <a href="maps/edmonton_c100_s5.html">Edmonton</a>
 </details></li>
@@ -264,98 +264,7 @@ Major Canadian cities
 </div>
 <div class="fragment">
 <ul>
-<li>All <strong>cities</strong> from <a href="https://watersheds.sanghoon.ca/">1975 to 2020 in the world</a></li>
-</ul>
-</div>
-</section>
-<section class="slide level2 center">
-
-<h3 id="comparison-against-previous-methods">Comparison against previous methods</h3>
-<div class="fragment">
-<ul>
-<li>Theoretically grounded in the monocentric city model</li>
-<li>Our method produces similar results as the commuting-flow-based approach, without requiring commuting-flow data.</li>
-</ul>
-</div>
-<div class="fragment">
-<ul>
-<li>Use the same algorithm to identify clusters at different levels (e.g.&nbsp;entire cities or subcenters within cities) with a single parameter adjustment.</li>
-</ul>
-</div>
-<div class="fragment">
-<ul>
-<li>Our method requires only one global parameter, the smoothing parameter <span class="math inline">\(\sigma\)</span>, to identify clusters at different levels, allowing large-scale applications.</li>
-</ul>
-</div>
-<div class="fragment">
-<ul>
-<li>Our method outperforms the density threshold method (the prevailing method) in terms of how well they can match the CBSA boundaries.</li>
-</ul>
-</div>
-</section>
-<section class="slide level2 center">
-
-
-<img data-src="figures/scatter_ws_density.png" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"></section>
-<section class="slide level2 center">
-
-<h3 id="new-facts-from-the-new-data">New facts from the new data</h3>
-<p>US cities and subcentres</p>
-<div class="fragment">
-<ul>
-<li>City size distribution follows lognormal distribution, rather than Zipf’s law.</li>
-</ul>
-</div>
-<div class="fragment">
-<ul>
-<li>The central place theory is missing an important channel - land requirement</li>
-</ul>
-</div>
-<div class="fragment">
-<ul>
-<li>The spatial distribution of economic activities across subcentres differs substantially from that across cities.
-<ul>
-<li>e.g., drinking places vs.&nbsp;restaurants</li>
-<li>Negative urban wage premium across subcentres.</li>
-</ul></li>
-</ul>
-</div>
-<div class="fragment">
-<ul>
-<li>The spatial distribution of economic activities among very small cities (pop &lt; 10,000) differs substantially from that among large cities.
-<ul>
-<li>Negative urban wage premium across small cities.</li>
-</ul></li>
-</ul>
-</div>
-</section>
-<section class="slide level2 center">
-
-<p>All cities in the world from 1975 to 2020</p>
-<div class="fragment">
-<ul>
-<li>World city size distribution follows lognormal distribution, rather than Zipf’s law.</li>
-</ul>
-</div>
-<div class="fragment">
-<ul>
-<li><p>Urbanization patterns from 1975 to 2020</p>
-<div class="fragment">
-<ul>
-<li>Global population growth was driven primarily by the expansion of existing cities, rather than the creation of new ones.</li>
-</ul>
-</div>
-<div class="fragment">
-<ul>
-<li>Gibrat’s law holds for all cities except for the lower tail of the distribution.</li>
-</ul>
-</div>
-<div class="fragment">
-<ul>
-<li>Median person lived in a city with population 0.66M in 1975, which increased to 1.42M by 2020 (115% increase)</li>
-<li>90th quantile person lived in a city with population 4.3M in 1975, which increased to 11.7M by 2020 (172% incresae)</li>
-</ul>
-</div></li>
+<li>All cities from <a href="https://watersheds.sanghoon.ca/">1975 to 2020 in the world</a></li>
 </ul>
 </div>
 </section>
@@ -368,7 +277,7 @@ Major Canadian cities
 <p>Group contiguous areas that have high level of interactions with an urban core, measured by commuting flows.</p>
 <div class="fragment">
 <ul>
-<li>Official city boundaries: CBSAs, CMAs, …</li>
+<li>Official city boundaries: CBSAs, FUAs, CMAs, …</li>
 </ul>
 </div>
 <div class="fragment">
@@ -380,29 +289,31 @@ Major Canadian cities
 <h4 id="challenge">Challenge</h4>
 <ul>
 <li>Commuting flow data are relatively difficult to obtain.</li>
+<li>Many countries do not have official city boundaries (e.g., China, India, Korea).</li>
 </ul>
 </div>
 </section>
 <section class="slide level2 center">
 
-<h3 id="density-based-approaches">Density based approaches</h3>
+<h3 id="density-threshold-approaches">Density threshold approaches</h3>
 <p>Set a density threshold on a smoothed density surface and find contiguous areas above the threshold.</p>
 <p><br></p>
 <div class="fragment">
-<p>Prevaling approach. Encompasses various methods:</p>
+<p>Prevaling approach in the literature. Encompasses various methods:</p>
 <ul>
 <li>grid-based approach</li>
 <li>DBSCAN</li>
 <li>city clustering algorithm</li>
 </ul>
 </div>
-<div class="fragment">
-<p>Main challenges</p>
-<ul>
-<li>Need for local thresholds: Different areas often require different thresholds to separate clusters.</li>
-<li>Arbitrary selection of density thresholds.</li>
-</ul>
-</div>
+<!--
+:::{.fragment}
+Main challenges
+
+- Need for local thresholds: Different areas often require different thresholds to separate clusters.
+- Arbitrary selection of density thresholds.
+:::
+-->
 </section>
 <section class="slide level2 center">
 
@@ -476,42 +387,61 @@ Major Canadian cities
 <img data-src="figures/example_diff_sigma.png" width="1260" class="r-stretch"></section>
 <section class="slide level2 center">
 
-<h3 id="smoothing">Smoothing</h3>
-<p>Two approaches to choosing the smoothing parameter</p>
+<h3 id="computer-vision">Computer Vision</h3>
+<p>Different <span class="math inline">\(\sigma\)</span> reveals different features.</p>
+<ul>
+<li>leaves with low <span class="math inline">\(\sigma\)</span> and trees with high <span class="math inline">\(\sigma\)</span></li>
+</ul>
 <div class="fragment">
 <ul>
-<li>Statistics: find the single <span class="math inline">\(\sigma\)</span> that best estimates the true density function.</li>
+<li>subcenters with low <span class="math inline">\(\sigma\)</span> and cities with high <span class="math inline">\(\sigma\)</span></li>
 </ul>
 </div>
 <div class="fragment">
-<ul>
-<li>Computer Vision: different features reveal themselves at different <span class="math inline">\(\sigma\)</span>. (e.g., leaves with low <span class="math inline">\(\sigma\)</span> and tree with high <span class="math inline">\(\sigma\)</span>)</li>
-</ul>
-</div>
-<div class="fragment">
-<p>We follow the computer vision approach: subcenters with low <span class="math inline">\(\sigma\)</span> and cities with high <span class="math inline">\(\sigma\)</span>.</p>
+<p>We can leverage theoretical results from computer vision.</p>
 </div>
 </section>
 <section class="slide level2 center">
 
-<h3 id="the-structure-of-images---koenderink-1984">The Structure of Images - Koenderink (1984)</h3>
+<h3 id="scale-space-theory">Scale Space Theory</h3>
+<ul>
+<li>A mathematical framework to analyze the structure of images across scales, a real-valued function <span class="math inline">\(K: (x,y,\sigma) \to \mathbb{R}\)</span></li>
+</ul>
 <div class="fragment">
-<p>Foundational paper in computer vision</p>
+<p>Koenderink (1984), The Structure of Images</p>
 </div>
 <div class="fragment">
-<p>Causality in scale space</p>
 <ul>
-<li><p>No “Hallucinations”: <strong>Gaussian smoothing</strong> is the only method that guarantees no new peaks or fake details are created during blurring.</p></li>
-<li><p>One-Way Simplification: Features can only merge or flatten out as scale increases, ensuring every coarse shape has a clear “ancestor” in the original data.</p></li>
-<li><p>Scale Hierarchy: This creates a tree-like structure where a single feature at a large scale “branches” into multiple finer details as you move toward smaller scales.</p></li>
+<li><p><strong>Gaussian smoothing</strong> is the only method that guarantees no new peaks (i.e., extrema) are created as scale increases (i.e., during blurring).</p></li>
+<li><p>Peaks can only merge or flatten out as scale increases, but never split.</p>
+<ul>
+<li>They merge by a peak colliding with a saddle point. <a href="https://koenderink.streamlit.app/">Online demo</a></li>
+</ul></li>
+<li><p>These two properties imply the topological hierarchy: a cluster at higher <span class="math inline">\(\sigma\)</span> (e.g., cities) can be broken down into clusters at lower <span class="math inline">\(\sigma\)</span> (e.g., subcenters).</p></li>
 </ul>
 </div>
 <div class="fragment">
-<p>Our delineation preserves the topological hierarchy: a cluster at higher <span class="math inline">\(\sigma\)</span> (e.g., cities) can be broken down into clusters at lower <span class="math inline">\(\sigma\)</span> (e.g., subcenters).</p>
+<p>The topological hierarchy</p>
+<ul>
+<li>ensures data aggregation consistency across scales.</li>
+<li>reveals internal structure of cities at different scales.</li>
+</ul>
 </div>
-<div class="fragment">
-<p><a href="https://koenderink.streamlit.app/">Online demo</a></p>
+</section>
+<section class="slide level2 center">
+
+<div class="center">
+<div class="column" style="width:100%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="figures/nyc_merge_tree.png" style="width:100.0%"></p>
+</figure>
 </div>
+</div>
+</div>
+</div></div>
 </section>
 <section class="slide level2 center">
 
@@ -544,37 +474,114 @@ Major Canadian cities
 </div>
 </div></div>
 </section>
-<section class="slide level2 center">
+<section id="empirical-applications" class="slide level2 center" data-background-color="#FBBC13">
+<h2><span data-text-align="center"><span class="white_font">Empirical Applications</span></span></h2>
+<!--
 
-<h4 id="summary">Summary</h4>
-<div class="fragment">
-<ul>
-<li>Monocentric city model. Produces similar results as the flow-based approach, without requiring commuting-flow data.</li>
-</ul>
-</div>
-<div class="fragment">
-<ul>
-<li>Use the same algorithm to identify clusters at different levels (e.g.&nbsp;entire cities or subcenters within cities) with a single parameter adjustment.</li>
-</ul>
-</div>
-<div class="fragment">
-<ul>
-<li>Topological hierarchy of clusters at different scales.</li>
-</ul>
-</div>
-<div class="fragment">
-<ul>
-<li>No need to handpick parameters for each region, allowing large-scale applications.</li>
-</ul>
-</div>
-<div class="fragment">
-<ul>
-<li>Applicable to various data types (e.g., point, polygon, raster), as long as we can generate a density surface.</li>
-</ul>
-</div>
+---
+
+### Comparison against previous methods
+
+:::{.fragment}
+- Theoretically grounded in the monocentric city model
+- Our method produces similar results as the commuting-flow-based approach, without requiring commuting-flow data.
+:::
+
+:::{.fragment}
+- Use the same algorithm to identify clusters at different levels (e.g. entire cities or subcenters within cities) with a single parameter adjustment.
+:::
+
+:::{.fragment}
+- Our method requires only one global parameter, the smoothing parameter $\sigma$, to identify clusters at different levels, allowing large-scale applications.
+:::
+
+:::{.fragment}
+- Our method outperforms the density threshold method (the prevailing method) in terms of how well they can match the CBSA boundaries.
+:::
+
+---
+
+
+::: {.cell layout-align="center"}
+::: {.cell-output-display}
+![](figures/scatter_ws_density.png){fig-align='center' width=75%}
+:::
+:::
+
+
+---
+
+### New facts from the new data
+
+US cities and subcentres
+
+:::{.fragment}
+- City size distribution follows lognormal distribution, rather than Zipf's law.
+:::
+
+:::{.fragment}
+- The central place theory is missing an important channel - land requirement
+:::
+
+:::{.fragment}
+- The spatial distribution of economic activities across subcentres differs substantially from that across cities. 
+  - e.g., drinking places vs. restaurants
+  - Negative urban wage premium across subcentres.
+:::
+7
+:::{.fragment}
+- The spatial distribution of economic activities among very small cities (pop < 10,000) differs substantially from that among large cities.
+  - Negative urban wage premium across small cities.
+:::
+
+---
+
+All cities in the world from 1975 to 2020
+
+:::{.fragment}
+- World city size distribution follows lognormal distribution, rather than Zipf's law.
+:::
+
+:::{.fragment}
+- Urbanization patterns from 1975 to 2020
+
+  :::{.fragment}
+  - Global population growth was driven primarily by the expansion of existing cities, rather than the creation of new ones.
+  :::
+  :::{.fragment}
+  - Gibrat's law holds for all cities except for the lower tail of the distribution.
+  :::
+  :::{.fragment}
+  - Median person lived in a city with population 0.66M in 1975, which increased to 1.42M by 2020 (115% increase)
+  - 90th quantile person lived in a city with population 4.3M in 1975, which increased to 11.7M by 2020 (172% incresae)
+  :::
+:::
+
+
+---
+
+#### Summary
+
+:::{.fragment}
+- Monocentric city model. Produces similar results as the flow-based approach, without requiring commuting-flow data.
+:::
+:::{.fragment}
+- Use the same algorithm to identify clusters at different levels (e.g. entire cities or subcenters within cities) with a single parameter adjustment. 
+:::
+:::{.fragment}
+- Topological hierarchy of clusters at different scales.
+:::
+:::{.fragment}
+- No need to handpick parameters for each region, allowing large-scale applications.
+:::
+:::{.fragment}
+- Applicable to various data types (e.g., point, polygon, raster), as long as we can generate a density surface.
+:::
+
+-->
 </section>
-<section id="delineating-subcentres-in-the-us" class="slide level2 center" data-background-color="#FBBC13">
-<h2><span data-text-align="center"><span class="white_font">Delineating Subcentres in the US</span></span></h2>
+<section id="delineating-subcentres-and-cities-in-the-us" class="slide level2 center">
+<h2><span data-text-align="center"><span class="pink_font">Delineating Subcentres and Cities in the US</span></span></h2>
 </section>
 <section class="slide level2 center">
 
@@ -1237,7 +1244,7 @@ Canada
 
 <img data-src="figures/pois_atlanta.png" width="793" class="r-stretch"></section>
 <section id="processing-steps" class="slide level2 center">
-<h2><span data-text-align="center"><span class="pink_font">Processing steps</span></span></h2>
+<h2>Processing steps</h2>
 </section>
 <section class="slide level2 center">
 
@@ -1459,12 +1466,13 @@ Major Canadian cities
 <a href="maps/toronto_c100_s5.html">Toronto</a>, <a href="maps/montreal_c100_s5.html">Montréal</a>, <a href="maps/vancouver_c100_s5.html">Vancouver</a>, <a href="maps/ottawa_gatineau_c100_s5.html">Ottawa-Gatineau</a>, <a href="maps/calgary_c100_s5.html">Calgary</a>, <a href="maps/edmonton_c100_s5.html">Edmonton</a>
 </details>
 </section>
-<section id="delineating-whole-cities" class="slide level2 center">
-<h2><span data-text-align="center"><span class="pink_font">Delineating Whole Cities</span></span></h2>
+<section id="benchmarking-with-whole-cities" class="slide level2 center">
+<h2><span data-text-align="center"><span class="pink_font">Benchmarking with Whole Cities</span></span></h2>
 </section>
 <section class="slide level2 center">
 
 <p>Our method can identify a different level of clusters by choosing a different <span class="math inline">\(\sigma\)</span>.</p>
+<p>Across scales cities are distinctive, because official boundaries, such as CBSAs, provide a natural benchmark.</p>
 </section>
 <section class="slide level2 center">
 
@@ -1476,7 +1484,7 @@ Major Canadian cities
 </div>
 <div class="fragment">
 <ul>
-<li>To quantify the similarity, we employ the City Jaccard (similarity) index <span class="math inline">\(J_C\)</span></li>
+<li>City Jaccard (similarity) index <span class="math inline">\(J_C\)</span>, by de Bellefon et al.&nbsp;(2021)</li>
 </ul>
 <p><span class="math display">\[J_C \equiv \frac{\sum_{k \in K} | U_k^{cbsa} \cap U_k^{ws}|}{|  U^{cbsa} \cup U^{ws} |}\]</span> where <span class="math inline">\(U_k^{cbsa}\)</span> refers to CBSA <span class="math inline">\(k\)</span> and <span class="math inline">\(U_k^{ws}\)</span> denotes the largest cluster whose center is located in CBSA <span class="math inline">\(k\)</span>.</p>
 <ul>
@@ -1521,46 +1529,36 @@ Major Canadian cities
 <p><img src="figures/usa_density_map.png" style="display: block; width: 100%; clip-path: inset(10% 0 5% 0); margin-top: -10%; margin-bottom: 0%;"></p>
 </div>
 </div>
-</section>
-<section class="slide level2 center">
+<!--
+---
 
-<p>We identify the full size distribution of cities</p>
-<div class="fragment">
-<ul>
-<li>A total of 1,997 cities.
-<ul>
-<li>The smallest one contains only one point of interest (POI), the median contains 371 POIs, and the largest city encompasses 271,261 POIs.</li>
-</ul></li>
-</ul>
-</div>
-<div class="fragment">
-<ul>
-<li>815 clusters matched to CBSAs (the largest in CBSAs) vs 918 CBSAs.
-<ul>
-<li>(-) Small CBSAs are absorbed into larger nearby clusters (e.g.&nbsp;Trenton, NJ)</li>
-<li>(+) Some CBSAs with multiple cores are divided into separate clusters (e.g.&nbsp;Jacksonville, FL)</li>
-</ul></li>
-</ul>
-</div>
-</section>
-<section class="slide level2 center">
+We identify the full size distribution of cities
 
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="figures/trenton_ex.png"></p>
-<figcaption>Trenton, NJ</figcaption>
-</figure>
-</div>
-</div><div class="column" style="width:50%;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="figures/jacksonville_ex.png"></p>
-<figcaption>Jacksonville, FL</figcaption>
-</figure>
-</div>
-</div></div>
+:::{.fragment}
+- A total of 1,997 cities.
+  - The smallest one contains only one point of interest (POI), the median contains 371 POIs, and the largest city encompasses 271,261 POIs.
+:::
+
+:::{.fragment}
+- 815 clusters matched to CBSAs (the largest in CBSAs) vs 918 CBSAs. 
+  - (-) Small CBSAs are absorbed into larger nearby clusters (e.g. Trenton, NJ)
+  - (+) Some CBSAs with multiple cores are divided into separate clusters (e.g. Jacksonville, FL)
+:::
+
+---
+
+:::: {.columns}
+
+::: {.column width="50%"}
+![Trenton, NJ](figures/trenton_ex.png)
+:::
+
+::: {.column width="50%"}
+![Jacksonville, FL](figures/jacksonville_ex.png)
+:::
+
+::::
+-->
 </section>
 <section id="comparison-with-density-based-clustering" class="slide level2 center">
 <h2><span data-text-align="center"><span class="pink_font">Comparison with Density-based Clustering</span></span></h2>
@@ -1671,7 +1669,7 @@ Minimum cutoff to separate San Francisco and San Jose is 13.8 POIs per $km^2$. O
 <p>We tune parameters of the density-based approach to best match the CBSA boundaries.</p>
 <div class="fragment">
 <ul>
-<li>Jaccard index with Areas: <span class="math inline">\(\sigma\)</span> = 6.0<span class="math inline">\(km\)</span> threshold=0.4 POIs per <span class="math inline">\(km^2\)</span>. Jaccard index = <strong>0.137</strong></li>
+<li>Jaccard index with land areas: <span class="math inline">\(\sigma\)</span> = 6.0<span class="math inline">\(km\)</span> threshold=0.4 POIs per <span class="math inline">\(km^2\)</span>. Jaccard index = <strong>0.137</strong></li>
 </ul>
 <p>Ours: <span class="math inline">\(\sigma\)</span> = 11.0<span class="math inline">\(km\)</span>. Jaccard index = <strong>0.469</strong>.</p>
 </div>
@@ -1681,10 +1679,11 @@ Minimum cutoff to separate San Francisco and San Jose is 13.8 POIs per $km^2$. O
 </ul>
 <p>Ours: <span class="math inline">\(\sigma\)</span> = 11.4<span class="math inline">\(km\)</span>. Jaccard index = <strong>0.833</strong>.</p>
 </div>
+<p><br></p>
 <div class="fragment">
-<h4 id="compared-to-the-density-based-method">Compared to the density based method</h4>
+<h4 id="compared-to-the-density-threshold-method">Compared to the Density threshold method</h4>
 <p>Our method produces a superior result with only one parameter.</p>
-<p>The optimal parameter value is same both with area and population.</p>
+<p>The optimal parameter value are similar for both with area and population.</p>
 </div>
 </section>
 <section class="slide level2 center">
@@ -2399,13 +2398,6 @@ R<sup>2</sup>
 </section>
 <section class="slide level2 center">
 
-<h4 id="urban-wage-premium-for-small-cities-benchmark">Urban Wage Premium for small cities (Benchmark)</h4>
-
-<img data-src="figures/urban_premium_official_ws.png" class="quarto-figure quarto-figure-center r-stretch" style="width:40.0%"><p><strong>Watersheds with pop &gt; 10,000:</strong> 0.0808 (s.e. 0.0051)</p>
-<p><strong>Watersheds with pop &lt; 10,000:</strong> -0.0622 (s.e. 0.0208)</p>
-</section>
-<section class="slide level2 center">
-
 <h4 id="urban-wage-premium-for-small-cities-all-cities">Urban Wage Premium for small cities (all cities)</h4>
 
 <img data-src="figures/urban_premium_offical_ws_all_sample.png" class="quarto-figure quarto-figure-center r-stretch" style="width:35.0%"><p>Urban Wage Premium may not work for small cities.</p>
@@ -2417,7 +2409,7 @@ R<sup>2</sup>
 </section>
 <section class="slide level2 center">
 
-<h3 id="zipfs-law-for-all-cities-in-the-world">Zipf’s Law for all Cities in the World</h3>
+<h3 id="zipfs-law-for-all-cities">Zipf’s Law for all Cities</h3>
 <p>Zipf’s Law: a city’s size is inversely proportional to its rank.</p>
 <p><span class="math display">\[S_r = \frac{S_1}{r}\]</span> where <span class="math inline">\(S_r\)</span> is the size of city with rank <span class="math inline">\(r\)</span> and <span class="math inline">\(S_1\)</span> is the size of the largest city.</p>
 <p><span class="math display">\[log(r) = log(S_1) - log(S_r)\]</span></p>
@@ -3124,7 +3116,7 @@ R<sup>2</sup>
 
 ::: {.cell}
 ::: {.cell-output-display}
-![](figures/zips_world_cut.png){width=2122}
+![](figures/zips_world_cut.png){width=1050}
 :::
 :::
 
@@ -3169,10 +3161,23 @@ R<sup>2</sup>
 </ul>
 </div>
 <div class="fragment">
-<p>By applying our algorithm to POI data and satelite-based population data, we delineate: - consumption subcenters in the continental US. First time in the literature. - cities in the world from 1975 to 2020.</p>
+<ul>
+<li>Across scales, our delineated boundaries respects topographical hierarchy.</li>
+</ul>
 </div>
 <div class="fragment">
-<p>These new datasets allow us to provide new empirical facts about urban structure and dynamics.</p>
+<ul>
+<li><p>By applying our algorithm to POI data and satelite-based population data, we delineate:</p>
+<ul>
+<li>consumption subcenters in the continental US.</li>
+<li>cities in the world from 1975 to 2020.</li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>These new datasets allow us to provide new empirical facts about urban structure and dynamics.</li>
+</ul>
 </div>
 
 </section>
@@ -3184,20 +3189,20 @@ R<sup>2</sup>
 </div></div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="Slides-2026_05_ubc_sauder_files/libs/revealjs/dist/reveal.js"></script>
+  <script src="Slides-2026_06_ubc_sauder_files/libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="Slides-2026_05_ubc_sauder_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="Slides-2026_05_ubc_sauder_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="Slides-2026_05_ubc_sauder_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="Slides-2026_05_ubc_sauder_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="Slides-2026_05_ubc_sauder_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
-  <script src="Slides-2026_05_ubc_sauder_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="Slides-2026_06_ubc_sauder_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="Slides-2026_06_ubc_sauder_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="Slides-2026_06_ubc_sauder_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="Slides-2026_06_ubc_sauder_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="Slides-2026_06_ubc_sauder_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="Slides-2026_06_ubc_sauder_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="Slides-2026_05_ubc_sauder_files/libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="Slides-2026_05_ubc_sauder_files/libs/revealjs/plugin/search/search.js"></script>
-  <script src="Slides-2026_05_ubc_sauder_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="Slides-2026_05_ubc_sauder_files/libs/revealjs/plugin/math/math.js"></script>
+  <script src="Slides-2026_06_ubc_sauder_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="Slides-2026_06_ubc_sauder_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="Slides-2026_06_ubc_sauder_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="Slides-2026_06_ubc_sauder_files/libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>

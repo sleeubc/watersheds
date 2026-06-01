@@ -1,0 +1,20 @@
+\begin{table}[!h]
+\centering
+\caption{\label{tab:jaccard_comparison}Performance of eFUA and Watershed Boundaries against Official Definitions}
+\centering
+\begin{tabular}[t]{llcc}
+\toprule
+Reference Boundary & Method & J_pop & J_area\\
+\midrule
+OECD FUAs & eFUA & 0.8187 & 0.2489\\
+OECD FUAs & Watershed (sigma=6 km, optimal J_pop) & 0.7810 & 0.3932\\
+OECD FUAs & Watershed (sigma=7 km, optimal J_area) & 0.7806 & 0.4021\\
+OECD FUAs & Watershed (sigma=9 km, baseline) & 0.7615 & 0.3848\\
+U.S. MSAs (M1) & eFUA & 0.7036 & 0.1745\\
+\addlinespace
+U.S. MSAs (M1) & Watershed (sigma=9 km) & 0.8115 & 0.4888\\
+U.S. CBSAs & eFUA & 0.6941 & 0.1027\\
+U.S. CBSAs & Watershed (sigma=9 km) & 0.8243 & 0.4702\\
+\bottomrule
+\end{tabular}
+\end{table}
