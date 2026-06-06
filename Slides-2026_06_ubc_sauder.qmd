@@ -167,7 +167,7 @@ New boundaries for
 
 ### Commuting-Flow-based approach
 
-Group contiguous areas that have high level of interactions with an urban core, measured by commuting flows.
+Start with an urban core. Group contiguous areas that have high level of interactions with it, measured by commuting flows.
 
 :::{.fragment}
 - Official city boundaries: CBSAs, FUAs, CMAs, ...
@@ -325,31 +325,52 @@ We can leverage theoretical results from computer vision.
 
 ---
 
-### Scale Space Theory
+### Koenderink (1984): Scale-Space Theory
 
-- A mathematical framework to analyze the structure of images across scales, a real-valued function $K: (x,y,\sigma) \to \mathbb{R}$
+The original image $L(x,y) \to \mathbb{R}$
 
 :::{.fragment}
-Koenderink (1984), The Structure of Images
+The smoothed image $K(x,y,\sigma) \to \mathbb{R}$ with the kernel $G(x,y,\sigma)$
+
+$$K(x,y,\sigma) = \int_{\mathbb{R}^2} L(u,v) \cdot G(x-u,y-v,\sigma)\,du\,dv$$
 :::
 
 :::{.fragment}
+$K(x,y,\sigma)$ is a scale space representation of the original image $L(x,y)$
 
-- **Gaussian smoothing** is the only method that guarantees no new peaks (i.e., extrema) are created as scale increases (i.e., during blurring).
+The scale space theory provides a mathematical framework to analyze the structure of images across scales.
+:::
 
-- Peaks can only merge or flatten out as scale increases, but never split. 
-    - They merge by a peak colliding with a saddle point. [Online demo](https://koenderink.streamlit.app/)
+---
 
-- These two properties imply the topological hierarchy: a cluster at higher $\sigma$ (e.g., cities) can be broken down into clusters at lower $\sigma$ (e.g., subcenters).
+### Causality theorem
+
+:::{.fragment}
+Assume
+
+- **causality**: as $\sigma$ increases, no new peaks can appear
+- the smoothing kernel is **homogeneous** across locations and **isotropic** across directions.
 :::
 
 :::{.fragment}
+Then, the only smoothing kernel that satisfies these properties is the **Gaussian** kernel:
+$$G(x,y) = \frac{1}{2 \pi \sigma^2} \exp^{-(x^2+y^2)/(2\sigma^2)}$$
 
-The topological hierarchy 
-
-- ensures data aggregation consistency across scales.
-- reveals internal structure of cities at different scales.
 :::
+
+---
+
+### Peaks Merge, Not Split as Scale Increases
+
+- Peaks can only merge or flatten out as scale increases, but never split.
+
+- They merge by a peak colliding with a saddle point. [Online demo](https://koenderink.streamlit.app/)
+
+---
+
+### Topological hierarchy
+
+These two properties imply the topological hierarchy: a cluster at higher $\sigma$ (e.g., cities) can be broken down into clusters at lower $\sigma$ (e.g., subcenters).
 
 ---
 
@@ -361,6 +382,13 @@ include_graphics("figures/nyc_merge_tree.png")
 :::
 
 :::
+
+---
+
+The topological hierarchy 
+
+- ensures data aggregation consistency across scales.
+- reveals internal structure of cities at different scales.
 
 ---
 
@@ -654,6 +682,7 @@ include_graphics("figures/d8_flow_algorithm.png")
 Pour points of the inverted smoothed surface.
 
 Local minima of the inverted smoothed surface, but not local maxima.
+
 - The D8 flow pointer of the [inverted]{.pink_font} surface is 0.
 - The D8 flow pointer of the [pre-inverted]{.pink_font} surface is [not]{.pink_font} 0, to exclude flat areas.
 
@@ -741,7 +770,7 @@ For each pour point, identify the watershed cells flowing to the pour point usin
 
 ---
 
-### Final outputs for Continental US Subcentres
+### Final outputs for Continental US
 
 [Continental US](https://subcenters.sanghoon.ca/)
 
@@ -749,14 +778,14 @@ For each pour point, identify the watershed cells flowing to the pour point usin
 
 ---
 
-## [[Benchmarking with Whole Cities]{.pink_font}]{text-align="center"} {.center}
+## [[Benchmarks with Cities]{.pink_font}]{text-align="center"} {.center}
 
 ---
 
 
-Our method can identify a different level of clusters by choosing a different $\sigma$.
+Across scales, cities are distinctive, because official boundaries, such as CBSAs, provide a natural benchmark.
 
-Across scales cities are distinctive, because official boundaries, such as CBSAs, provide a natural benchmark.
+We tune the smoothing parameters for our method and the density-thresdhold method to best match the CBSA boundaries, and compare the results.
 
 ---
 
@@ -849,7 +878,7 @@ We identify the full size distribution of cities
 -->
 
 
-## [[Comparison with Density-based Clustering]{.pink_font}]{text-align="center"} {.center}
+## [Density-threshold Clustering]{text-align="center"} {.center}
 
 <!--
 ---
@@ -1334,7 +1363,6 @@ Urban Wage Premium may not work for small cities.
 
 **Watersheds with pop < 10,000:** -0.0622 (s.e. 0.0208)
 
-
 ---
 
 ## [[Zipf's Law]{.pink_font}]{text-align="center"} {.center}
@@ -1603,7 +1631,7 @@ include_graphics("figures/med_pop_75_20.png")
 :::
 
 :::{.fragment}
-- Across scales, our delineated boundaries respects topographical hierarchy.
+- Across scales, our delineated boundaries respects topological hierarchy.
 :::
 
 :::{.fragment}

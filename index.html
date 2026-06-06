@@ -274,7 +274,7 @@ major Canadian cities
 <section class="slide level2 center">
 
 <h3 id="commuting-flow-based-approach">Commuting-Flow-based approach</h3>
-<p>Group contiguous areas that have high level of interactions with an urban core, measured by commuting flows.</p>
+<p>Start with an urban core. Group contiguous areas that have high level of interactions with it, measured by commuting flows.</p>
 <div class="fragment">
 <ul>
 <li>Official city boundaries: CBSAs, FUAs, CMAs, …</li>
@@ -403,30 +403,43 @@ Main challenges
 </section>
 <section class="slide level2 center">
 
-<h3 id="scale-space-theory">Scale Space Theory</h3>
-<ul>
-<li>A mathematical framework to analyze the structure of images across scales, a real-valued function <span class="math inline">\(K: (x,y,\sigma) \to \mathbb{R}\)</span></li>
-</ul>
+<h3 id="koenderink-1984-scale-space-theory">Koenderink (1984): Scale-Space Theory</h3>
+<p>The original image <span class="math inline">\(L(x,y) \to \mathbb{R}\)</span></p>
 <div class="fragment">
-<p>Koenderink (1984), The Structure of Images</p>
+<p>The smoothed image <span class="math inline">\(K(x,y,\sigma) \to \mathbb{R}\)</span> with the kernel <span class="math inline">\(G(x,y,\sigma)\)</span></p>
+<p><span class="math display">\[K(x,y,\sigma) = \int_{\mathbb{R}^2} L(u,v) \cdot G(x-u,y-v,\sigma)\,du\,dv\]</span></p>
 </div>
 <div class="fragment">
+<p><span class="math inline">\(K(x,y,\sigma)\)</span> is a scale space representation of the original image <span class="math inline">\(L(x,y)\)</span></p>
+<p>The scale space theory provides a mathematical framework to analyze the structure of images across scales.</p>
+</div>
+</section>
+<section class="slide level2 center">
+
+<h3 id="causality-theorem">Causality theorem</h3>
+<div class="fragment">
+<p>Assume</p>
 <ul>
-<li><p><strong>Gaussian smoothing</strong> is the only method that guarantees no new peaks (i.e., extrema) are created as scale increases (i.e., during blurring).</p></li>
-<li><p>Peaks can only merge or flatten out as scale increases, but never split.</p>
-<ul>
-<li>They merge by a peak colliding with a saddle point. <a href="https://koenderink.streamlit.app/">Online demo</a></li>
-</ul></li>
-<li><p>These two properties imply the topological hierarchy: a cluster at higher <span class="math inline">\(\sigma\)</span> (e.g., cities) can be broken down into clusters at lower <span class="math inline">\(\sigma\)</span> (e.g., subcenters).</p></li>
+<li><strong>causality</strong>: as <span class="math inline">\(\sigma\)</span> increases, no new peaks can appear</li>
+<li>the smoothing kernel is <strong>homogeneous</strong> across locations and <strong>isotropic</strong> across directions.</li>
 </ul>
 </div>
 <div class="fragment">
-<p>The topological hierarchy</p>
-<ul>
-<li>ensures data aggregation consistency across scales.</li>
-<li>reveals internal structure of cities at different scales.</li>
-</ul>
+<p>Then, the only smoothing kernel that satisfies these properties is the <strong>Gaussian</strong> kernel: <span class="math display">\[G(x,y) = \frac{1}{2 \pi \sigma^2} \exp^{-(x^2+y^2)/(2\sigma^2)}\]</span></p>
 </div>
+</section>
+<section class="slide level2 center">
+
+<h3 id="peaks-merge-not-split-as-scale-increases">Peaks Merge, Not Split as Scale Increases</h3>
+<ul>
+<li><p>Peaks can only merge or flatten out as scale increases, but never split.</p></li>
+<li><p>They merge by a peak colliding with a saddle point. <a href="https://koenderink.streamlit.app/">Online demo</a></p></li>
+</ul>
+</section>
+<section class="slide level2 center">
+
+<h3 id="topological-hierarchy">Topological hierarchy</h3>
+<p>These two properties imply the topological hierarchy: a cluster at higher <span class="math inline">\(\sigma\)</span> (e.g., cities) can be broken down into clusters at lower <span class="math inline">\(\sigma\)</span> (e.g., subcenters).</p>
 </section>
 <section class="slide level2 center">
 
@@ -442,6 +455,14 @@ Main challenges
 </div>
 </div>
 </div></div>
+</section>
+<section class="slide level2 center">
+
+<p>The topological hierarchy</p>
+<ul>
+<li>ensures data aggregation consistency across scales.</li>
+<li>reveals internal structure of cities at different scales.</li>
+</ul>
 </section>
 <section class="slide level2 center">
 
@@ -1350,7 +1371,11 @@ Canada
 
 <h3 id="identifying-peaks">Identifying peaks</h3>
 <p>Pour points of the inverted smoothed surface.</p>
-<p>Local minima of the inverted smoothed surface, but not local maxima. - The D8 flow pointer of the <span class="pink_font">inverted</span> surface is 0. - The D8 flow pointer of the <span class="pink_font">pre-inverted</span> surface is <span class="pink_font">not</span> 0, to exclude flat areas.</p>
+<p>Local minima of the inverted smoothed surface, but not local maxima.</p>
+<ul>
+<li>The D8 flow pointer of the <span class="pink_font">inverted</span> surface is 0.</li>
+<li>The D8 flow pointer of the <span class="pink_font">pre-inverted</span> surface is <span class="pink_font">not</span> 0, to exclude flat areas.</li>
+</ul>
 </section>
 <section class="slide level2 center">
 
@@ -1457,7 +1482,7 @@ Canada
 </section>
 <section class="slide level2 center">
 
-<h3 id="final-outputs-for-continental-us-subcentres">Final outputs for Continental US Subcentres</h3>
+<h3 id="final-outputs-for-continental-us">Final outputs for Continental US</h3>
 <p><a href="https://subcenters.sanghoon.ca/">Continental US</a></p>
 <details>
 <summary style="cursor:pointer;color:#2780e3">
@@ -1466,13 +1491,13 @@ Major Canadian cities
 <a href="maps/toronto_c100_s5.html">Toronto</a>, <a href="maps/montreal_c100_s5.html">Montréal</a>, <a href="maps/vancouver_c100_s5.html">Vancouver</a>, <a href="maps/ottawa_gatineau_c100_s5.html">Ottawa-Gatineau</a>, <a href="maps/calgary_c100_s5.html">Calgary</a>, <a href="maps/edmonton_c100_s5.html">Edmonton</a>
 </details>
 </section>
-<section id="benchmarking-with-whole-cities" class="slide level2 center">
-<h2><span data-text-align="center"><span class="pink_font">Benchmarking with Whole Cities</span></span></h2>
+<section id="benchmarks-with-cities" class="slide level2 center">
+<h2><span data-text-align="center"><span class="pink_font">Benchmarks with Cities</span></span></h2>
 </section>
 <section class="slide level2 center">
 
-<p>Our method can identify a different level of clusters by choosing a different <span class="math inline">\(\sigma\)</span>.</p>
-<p>Across scales cities are distinctive, because official boundaries, such as CBSAs, provide a natural benchmark.</p>
+<p>Across scales, cities are distinctive, because official boundaries, such as CBSAs, provide a natural benchmark.</p>
+<p>We tune the smoothing parameters for our method and the density-thresdhold method to best match the CBSA boundaries, and compare the results.</p>
 </section>
 <section class="slide level2 center">
 
@@ -1560,8 +1585,8 @@ We identify the full size distribution of cities
 ::::
 -->
 </section>
-<section id="comparison-with-density-based-clustering" class="slide level2 center">
-<h2><span data-text-align="center"><span class="pink_font">Comparison with Density-based Clustering</span></span></h2>
+<section id="density-threshold-clustering" class="slide level2 center">
+<h2><span data-text-align="center">Density-threshold Clustering</span></h2>
 </section>
 <section id="section-11" class="slide level2 center">
 <h2><!--
@@ -3162,7 +3187,7 @@ R<sup>2</sup>
 </div>
 <div class="fragment">
 <ul>
-<li>Across scales, our delineated boundaries respects topographical hierarchy.</li>
+<li>Across scales, our delineated boundaries respects topological hierarchy.</li>
 </ul>
 </div>
 <div class="fragment">
