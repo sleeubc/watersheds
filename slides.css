@@ -122,6 +122,33 @@ h1.title {
 
 }
 
+.reveal .slide.scrollable {
+  height: 100% !important;
+  overflow-x: scroll !important;
+  overflow-y: scroll !important;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  padding-bottom: 1rem;
+}
+
+.reveal .slide.scrollable img {
+  max-width: none !important;
+  max-height: none !important;
+}
+
+.reveal .slide.scrollable .scrollable-figure-wrap {
+  width: 100%;
+}
+
+.reveal .slide.scrollable img.scrollable-full-width-figure {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
 .pull-left-2 {
   float: left;
   width: 60%;

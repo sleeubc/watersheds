@@ -1110,7 +1110,8 @@ What business types tend to concentrate in larger subcenters (vs larger cities)?
 Verifying this pattern at the subcenter level or in small cities has been difficult, due to the lack of consistent boundary data.
 :::
 
----
+<!--
+
 
 #####  POI Types (NAICS) by Avg. Cluster Size (among 4D-NAICS codes with more than 20,000 POIs)
 
@@ -1152,7 +1153,6 @@ bottom15
 :::
 
 ::::
-
 
 ---
 
@@ -1200,13 +1200,19 @@ bottom15_city
 
 ::::
 
-<!--
+-->
+
 ---
 
-```{r echo=FALSE, out.width='60%', fig.align='center'}
-include_graphics("figures/avg_npois_combined.png")
-```
--->
+##  {.scrollable}
+
+#### Average cluster size by POI type (NAICS): Subcenters vs. Cities
+
+among 4-digit NAICS codes with more than 20,000 POIs
+
+<div class="scrollable-figure-wrap">
+<img class="scrollable-full-width-figure" src="figures/avg_npois_combined.png" alt="Average cluster size by POI type (NAICS): Subcenters vs. Cities">
+</div>
 
 ---
 
