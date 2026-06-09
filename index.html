@@ -420,7 +420,7 @@ Main challenges
 <div class="fragment">
 <p>Assume</p>
 <ul>
-<li><strong>causality</strong>: as <span class="math inline">\(\sigma\)</span> increases, no new peaks can appear</li>
+<li><strong>causality</strong>: as <span class="math inline">\(\sigma\)</span> increases, no new peaks can appear out of nowhere.</li>
 <li>the smoothing kernel is <strong>homogeneous</strong> across locations and <strong>isotropic</strong> across directions.</li>
 </ul>
 </div>
@@ -440,6 +440,9 @@ Main challenges
 
 <h3 id="topological-hierarchy">Topological hierarchy</h3>
 <p>These two properties imply the topological hierarchy: a cluster at higher <span class="math inline">\(\sigma\)</span> (e.g., cities) can be broken down into clusters at lower <span class="math inline">\(\sigma\)</span> (e.g., subcenters).</p>
+<ul>
+<li>reveals internal structure of cities at different scales.</li>
+</ul>
 </section>
 <section class="slide level2 center">
 
@@ -455,14 +458,6 @@ Main challenges
 </div>
 </div>
 </div></div>
-</section>
-<section class="slide level2 center">
-
-<p>The topological hierarchy</p>
-<ul>
-<li>ensures data aggregation consistency across scales.</li>
-<li>reveals internal structure of cities at different scales.</li>
-</ul>
 </section>
 <section class="slide level2 center">
 
@@ -2248,9 +2243,8 @@ We delineate cities with polygon data (Census 2019 CBG population).
 <h2></h2>
 <h4 id="average-cluster-size-by-poi-type-naics-subcenters-vs.-cities">Average cluster size by POI type (NAICS): Subcenters vs.&nbsp;Cities</h4>
 <p>among 4-digit NAICS codes with more than 20,000 POIs</p>
-
 <div class="scrollable-figure-wrap">
-<img class="scrollable-full-width-figure" src="figures/avg_npois_combined.png" alt="Average cluster size by POI type (NAICS): Subcenters vs. Cities">
+<p><img class="scrollable-full-width-figure" src="figures/avg_npois_combined.png" alt="Average cluster size by POI type (NAICS): Subcenters vs. Cities"></p>
 </div>
 </section>
 <section class="slide level2 center">

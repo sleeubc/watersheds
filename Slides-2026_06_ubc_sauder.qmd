@@ -348,7 +348,7 @@ The scale space theory provides a mathematical framework to analyze the structur
 :::{.fragment}
 Assume
 
-- **causality**: as $\sigma$ increases, no new peaks can appear
+- **causality**: as $\sigma$ increases, no new peaks can appear out of nowhere.
 - the smoothing kernel is **homogeneous** across locations and **isotropic** across directions.
 :::
 
@@ -372,6 +372,8 @@ $$G(x,y) = \frac{1}{2 \pi \sigma^2} \exp^{-(x^2+y^2)/(2\sigma^2)}$$
 
 These two properties imply the topological hierarchy: a cluster at higher $\sigma$ (e.g., cities) can be broken down into clusters at lower $\sigma$ (e.g., subcenters).
 
+- reveals internal structure of cities at different scales.
+
 ---
 
 ::: {.center}
@@ -382,13 +384,6 @@ include_graphics("figures/nyc_merge_tree.png")
 :::
 
 :::
-
----
-
-The topological hierarchy 
-
-- ensures data aggregation consistency across scales.
-- reveals internal structure of cities at different scales.
 
 ---
 
