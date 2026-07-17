@@ -1,0 +1,38 @@
+<script>
+(() => {
+  const restartClass = "restart-slide-number";
+
+  const configureSegmentedSlideNumbers = () => {
+    const slides = Reveal.getSlides();
+    const restartAt = slides.findIndex((slide) =>
+      slide.classList.contains(restartClass)
+    );
+
+    if (restartAt === -1) return;
+
+    Reveal.configure({
+      slideNumber: (slide) => {
+        const current = slides.indexOf(slide);
+
+        if (current === -1) return [""];
+
+        const inRestartedSegment = current >= restartAt;
+        const segmentStart = inRestartedSegment ? restartAt : 0;
+        const segmentEnd = inRestartedSegment ? slides.length : restartAt;
+
+        return [
+          current - segmentStart + 1,
+          "/",
+          segmentEnd - segmentStart,
+        ];
+      },
+    });
+  };
+
+  if (Reveal.isReady()) {
+    configureSegmentedSlideNumbers();
+  } else {
+    Reveal.on("ready", configureSegmentedSlideNumbers);
+  }
+})();
+</script>
